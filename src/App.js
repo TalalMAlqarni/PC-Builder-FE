@@ -4,6 +4,8 @@ import axios from "axios";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import UserRegisterPage from "./pages/UserRegisterPage";
+import UserLoginPage from "./pages/UserLoginPage";
 
 function App() {
   const url = "http://localhost:5125";
@@ -38,6 +40,19 @@ function App() {
     {
       path: "/products/:id",
       element: <ProductDetailPage />,
+    },
+    {
+      path: "/user/register",
+      element: <UserRegisterPage />,
+    },
+    {
+      path: "/user/login",
+      element: <UserLoginPage />,
+    },
+
+    {
+      path: "*",
+      element: <p>Not Found</p>,
     },
   ]);
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 
-function Form(prop) {
-    const { setUserInput } = prop;
+function Form({ setUserInput, placeholder }) {
 
     function onChange(e) {
         setUserInput(e.target.value);
@@ -10,11 +9,15 @@ function Form(prop) {
     return (
         <div>
             <form>
-                <label>Please enter product name: </label>
-                <input type="text" onChange={onChange} />
+                <input
+                    type="text"
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    style={{ color: 'gray' }}
+                />
             </form>
         </div>
     );
 }
 
-export default Form
+export default Form;

@@ -10,9 +10,10 @@ function ProductsPage(prop) {
     const [value, setValue] = React.useState([0, 5000]);
     return (
         <>
-            <Form setUserInput={setUserInput} />
+            <label>Please enter product name: </label>
+            <Form setUserInput={setUserInput} placeholder="Search..." />
             <RangeSlider setValue={setValue} />
-            <Products allProductList={allProductList} userInput={userInput} value={value}/>
+            <Products allProductList={allProductList} userInput={userInput} value={value} />
         </>
     );
 }
