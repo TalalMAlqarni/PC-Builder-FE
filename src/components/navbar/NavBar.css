@@ -1,1 +1,45 @@
-/* styling for NavBar here */
+.nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #ffffff;
+  height: 60px;
+  width: 100%;
+  z-index: 1;
+}
+
+body {
+  padding-top: 70px;
+}
+
+.nav-items {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin-left: auto;
+  padding: 0;
+}
+
+.logo {
+  height: 100%;
+  margin-left: -20px;
+}
+
+li a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+.custom-line {
+  position: fixed;
+  top: 50px; /* Adjust based on navbar height */
+  width: 100%;
+  border: none;
+  border-top: 2px solid orange;
+  z-index: 1;
+}

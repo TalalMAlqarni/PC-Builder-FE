@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import UserRegister from '../components/user/UserRegister'
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import FilledInput from '@mui/material/FilledInput';
@@ -12,8 +12,13 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
 
-export default function UserRegisterPage() {
+export default function UpdateUser(prop) {
+    const { userData, setIsUserUpdated } = prop
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -27,25 +32,55 @@ export default function UserRegisterPage() {
     };
 
     const [userInfo, setUserInfo] = React.useState({
-        userName: '',
-        firstName: '',
-        lastName: '',
-        email: '',
+        userName: userData.username || '',
+        firstName: userData.firstName || '',
+        lastName: userData.lastName || '',
+        email: userData.email || '',
         password: '',
-        phoneNumber: '',
-        birthDate: '',
+        phoneNumber: userData.phoneNumber || '',
+        birthDate: userData.birthDate || '',
     });
+
+
+
 
     const handleChange = (prop) => (event) => {
         setUserInfo({ ...userInfo, [prop]: event.target.value });
     };
+
+
+    const [error, setError] = React.useState('');
+    const navigate = useNavigate();
+    function handleUpdate() {
+        const urlForUpdateUser = `http://localhost:5125/api/v1/users/${userData.userId}`;
+        const token = localStorage.getItem('token');
+        const updatedUserInfo = { ...userInfo };
+
+        Object.keys(updatedUserInfo).forEach(key => {
+            if (!updatedUserInfo[key]) {
+                delete updatedUserInfo[key];
+            }
+        });
+
+        axios.put(urlForUpdateUser, updatedUserInfo, { headers: { Authorization: `Bearer ${token}` } })
+            .then((res) => {
+                console.log(res);
+                setIsUserUpdated(true)
+            })
+            .catch((err) => {
+                if (err.response.data.message)
+                    setError(err.response.data.message);
+                if (err.response.data.title)
+                    setError("Date is not valid, please enter the birth date in the format YYYY-MM-DD");
+            });
+    }
 
     return (
         <>
 
             <div>
                 <h1>User Registration</h1>
-                <h3>Please enter your information to register, then click create account</h3>
+                <h3>Please update your information, then click Save Changes </h3>
             </div>
 
             <div>
@@ -169,8 +204,12 @@ export default function UserRegisterPage() {
                     />
                 </FormControl>
             </div>
-            <UserRegister userInfo={userInfo} />
+            <div>
+                {error && (
+                    <Alert severity="error">{error}</Alert>
+                )}
+            </div>
+            <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} onClick={() => handleUpdate()}>Save Changes</Button>
         </>
-    )
+    );
 }
-

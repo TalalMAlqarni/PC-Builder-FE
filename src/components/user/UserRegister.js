@@ -26,18 +26,17 @@ export default function UserRegister(prop) {
         axios
             .post(createUserUrl, userInfo)
             .then((res) => {
-                console.log(res.data);
                 setIsUserRegistered(true);
                 setError(false);
             })
             .catch((err) => {
                 setError(true);
                 setIsUserRegistered(false);
-                console.log(err);
                 if (err.response.data.message)
                     setErrorMsg(err.response.data.message);
                 if (err.response.data.title)
-                    setErrorMsg(err.response.data.title);
+                    setErrorMsg("Date is not valid, please enter the birth date in the format YYYY-MM-DD");
+                console.log(err);
             });
     }
 
@@ -66,10 +65,10 @@ export default function UserRegister(prop) {
             {isUserRegistered && (
                 <>
                     <div>
-                        <Button variant="contained" color='success' onClick={() => navigate('/user/login')}>Go to Login page</Button>
+                        <Alert severity="success" >User Registered Successfully, Now you can login</Alert>
                     </div>
                     <div>
-                        <Alert severity="success" >User Registered Successfully</Alert>
+                        <Button variant="contained" color='success' onClick={() => navigate('/user/login')}>Go to Login page</Button>
                     </div>
                 </>
             )}
