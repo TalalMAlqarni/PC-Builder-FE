@@ -11,6 +11,9 @@ import ProtectedRoute from "./components/route/ProtectedRoute";
 import LayOut from "./components/layout/LayOut";
 import CartPage from "./pages/CartPage";
 import DashboardPage from "./pages/DashboardPage";
+import DashboardProductsPage from "./pages/DashboardProductsPage";
+import DashboardOrdersPage from "./pages/DashboardOrdersPage";
+import DashboardUsersPage from "./pages/DashboardUsersPage";
 
 function App() {
   const url = "http://localhost:5125";
@@ -65,14 +68,21 @@ function App() {
 
   const [isUserAdmin, setIsUserAdmin] = useState(false);
   function checkAdmin() {
+    setIsUserLoading(true);
     if (userData) {
-      if (userData.role === "Admin")
+      if (userData.role === "Admin") {
         setIsUserAdmin(true);
-      else
+        setIsUserLoading(false);
+      }
+      else {
         setIsUserAdmin(false);
+        setIsUserLoading(false);
+      }
     }
-    else
+    else {
       setIsUserAdmin(false);
+      setIsUserLoading(false);
+    }
   }
   useEffect(() => {
     checkAdmin();
@@ -115,6 +125,18 @@ function App() {
         {
           path: "/dashboard",
           element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} shouldCheckAdmin={true} element={<DashboardPage />} />,
+        },
+        {
+          path: "/dashboard/products",
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} shouldCheckAdmin={true} element={<DashboardProductsPage allProductList={allProductList} getProducts={getProducts} />} />,
+        },
+        {
+          path: "/dashboard/orders",
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} shouldCheckAdmin={true} element={<DashboardOrdersPage />} />,
+        },
+        {
+          path: "/dashboard/users",
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} shouldCheckAdmin={true} element={<DashboardUsersPage />} />,
         },
         {
           // TODO:make a page for 404
