@@ -10,7 +10,7 @@ import { TableVirtuoso } from 'react-virtuoso';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 
-export default function DashboardProducts({ allProductList, setIsAdding, getProducts }) {
+export default function DashboardProducts({ allProductList, setIsAdding, getProducts, setProductIdForMoreDetails, setProductIdForUpdate }) {
 
     const columns = [
         {
@@ -56,7 +56,7 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => alert(`More details for ${row.productName}`)}
+                        onClick={() => setProductIdForMoreDetails(row.productId)}
                         style={{ marginRight: '5px' }}
                     >
                         More Details
@@ -64,7 +64,7 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
                     <Button
                         variant="contained"
                         color="warning"
-                        onClick={() => alert(`Edit ${row.productName}`)}
+                        onClick={() => setProductIdForUpdate(row.productId)}
                         style={{ marginRight: '5px' }}
                     >
                         Edit

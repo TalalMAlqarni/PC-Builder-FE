@@ -7,7 +7,7 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
         productName: '',
         productPrice: '',
         productImage: '',
-        productDescription: '',
+        description: '',
         productColor: '',
         weight: '',
         sku: '',
@@ -119,6 +119,7 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
                     <FormControl sx={{ m: 1, width: '80ch' }} variant="standard">
                         <TextField
                             label="Product Price"
+                            type="number"
                             value={productDetails.productPrice}
                             onChange={handleChange('productPrice')}
                             sx={{ width: '80ch' }}
@@ -139,8 +140,8 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
                     <FormControl sx={{ m: 1, width: '80ch' }} variant="standard">
                         <TextField
                             label="Product Description"
-                            value={productDetails.productDescription}
-                            onChange={handleChange('productDescription')}
+                            value={productDetails.description}
+                            onChange={handleChange('description')}
                             sx={{ width: '80ch' }}
                         />
                     </FormControl>
@@ -159,6 +160,7 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
                     <FormControl sx={{ m: 1, width: '80ch' }} variant="standard">
                         <TextField
                             label="Weight"
+                            type="number"
                             value={productDetails.weight}
                             onChange={handleChange('weight')}
                             sx={{ width: '80ch' }}
