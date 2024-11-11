@@ -8,7 +8,7 @@
   background-color: #ffffff;
   height: 60px;
   width: 100%;
-  z-index: 2;
+  z-index: 100;
 }
 
 body {
@@ -41,5 +41,5 @@ li a {
   width: 100%;
   border: none;
   border-top: 2px solid orange;
-  z-index: 3;
+  z-index: 100;
 }

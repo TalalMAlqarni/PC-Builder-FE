@@ -14,6 +14,7 @@ import DashboardPage from "./pages/DashboardPage";
 import DashboardProductsPage from "./pages/DashboardProductsPage";
 import DashboardOrdersPage from "./pages/DashboardOrdersPage";
 import DashboardUsersPage from "./pages/DashboardUsersPage";
+import OrderHistoryPage from "./pages/OrderHistoryPage";
 
 function App() {
   const url = "http://localhost:5125";
@@ -88,11 +89,13 @@ function App() {
     checkAdmin();
   }, [userData, token, isUserUpdated]);
 
+  const [cartList, setCartList] = useState([]);
+  const [createdCart, setCreatedCart] = useState(null);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayOut isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} />,
+      element: <LayOut isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} cartList={cartList} />,
       children: [
         {
           path: "/",
@@ -100,7 +103,7 @@ function App() {
         },
         {
           path: "/products",
-          element: <ProductsPage allProductList={allProductList} />,
+          element: <ProductsPage allProductList={allProductList} cartList={cartList} setCartList={setCartList} />,
         },
         {
           path: "/products/:id",
@@ -119,8 +122,12 @@ function App() {
           element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} element={<UserProfilePage userData={userData} setUserData={setUserData} isUserUpdated={isUserUpdated} setIsUserUpdated={setIsUserUpdated} setIsAuthenticated={setIsAuthenticated} />} />,
         },
         {
+          path: "/user/orders",
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} element={<OrderHistoryPage userId={userData.userId} />} />,
+        },
+        {
           path: "/cart",
-          element: <CartPage />,
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} element={<CartPage cartList={cartList} setCartList={setCartList} userData={userData} createdCart={createdCart} setCreatedCart={setCreatedCart} />} />,
         },
         {
           path: "/dashboard",
@@ -154,3 +161,4 @@ function App() {
 }
 
 export default App;
+

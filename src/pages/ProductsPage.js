@@ -5,7 +5,7 @@ import Form from '../components/form/Form'
 import RangeSlider from '../components/rangeForm/RangeForm'
 
 function ProductsPage(prop) {
-    const { allProductList } = prop;
+    const { allProductList, cartList, setCartList } = prop;
     const [userInput, setUserInput] = useState('');
     const [value, setValue] = React.useState([0, 5000]);
     return (
@@ -13,7 +13,7 @@ function ProductsPage(prop) {
             <label>Please enter product name: </label>
             <Form setUserInput={setUserInput} placeholder="Search..." />
             <RangeSlider setValue={setValue} />
-            <Products allProductList={allProductList} userInput={userInput} value={value} />
+            <Products allProductList={allProductList} userInput={userInput} value={value} cartList={cartList} setCartList={setCartList} />
         </>
     );
 }

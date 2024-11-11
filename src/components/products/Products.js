@@ -7,7 +7,7 @@ import Stack from "@mui/material/Stack";
 import axios from "axios";
 
 function Products(prop) {
-  const { allProductList, userInput, value } = prop;
+  const { allProductList, userInput, value, cartList, setCartList } = prop;
   const totalProducts = allProductList.length;
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
@@ -42,7 +42,7 @@ function Products(prop) {
     <>
       <div className="products-list">
         {productList.map((product) => (
-          <Product key={product.productId} product={product} />
+          <Product key={product.productId} product={product} cartList={cartList} setCartList={setCartList} />
         ))}
       </div>
       <Stack spacing={2}>

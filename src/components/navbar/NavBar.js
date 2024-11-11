@@ -12,7 +12,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 
 export default function NavBar(prop) {
-    const { isAuthenticated, isUserAdmin } = prop;
+    const { isAuthenticated, isUserAdmin, cartList } = prop;
     return (
         <div className="navbar">
             <nav className="nav">
@@ -45,7 +45,7 @@ export default function NavBar(prop) {
                     </li>
                     <li>
                         <Link to="/cart">
-                            <Badge badgeContent={0} color="secondary">
+                            <Badge badgeContent={cartList.length} color="warning">
                                 <ShoppingCartOutlinedIcon sx={{ color: "orange" }} />
                             </Badge>
                             <p>Cart</p>

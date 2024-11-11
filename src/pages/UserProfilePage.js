@@ -20,6 +20,9 @@ export default function UserProfilePage(prop) {
                             <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} onClick={() => setIsUserUpdated(false)}>Update Profile</Button>
                         </div>
                         <div style={{ marginTop: '1rem' }}>
+                            <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} onClick={() => navigate('/user/orders')}>Order History</Button>
+                        </div>
+                        <div style={{ marginTop: '1rem' }}>
                             <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} onClick={() => {
                                 localStorage.removeItem('token');
                                 setUserData(null);
