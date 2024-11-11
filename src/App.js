@@ -123,7 +123,7 @@ function App() {
         },
         {
           path: "/user/orders",
-          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} element={<OrderHistoryPage userId={userData.userId} />} />,
+          element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} element={<OrderHistoryPage userData={userData} />} />,
         },
         {
           path: "/cart",
