@@ -15,7 +15,8 @@ function Products({ allProductList, userInput, value, cartList, setCartList }) {
       urlParams.set("search", userInput);
     }
 
-    const urlForProductList = `http://localhost:5125/api/v1/subcategories/products?${urlParams.toString()}`;
+    const url = process.env.REACT_APP_API_URL;
+    const urlForProductList = `${url}/subcategories/products?${urlParams.toString()}`;
 
     axios.get(urlForProductList)
       .then(res => setProductList(res.data))

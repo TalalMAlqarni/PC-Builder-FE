@@ -11,8 +11,8 @@ export default function OrderHistoryPage({ userData }) {
     const [offset, setOffset] = useState(0); // For future implementation of pagination
     const [showDelivered, setShowDelivered] = useState(false);
 
-    const deliveredUrl = `http://localhost:5125/api/v1/orders/user/${userId}/ordershistory?limit=1000&offset=${offset}`;
-    const orderedUrl = `http://localhost:5125/api/v1/orders/user/${userId}?limit=1000&offset=${offset}`;
+    const deliveredUrl = `${process.env.REACT_APP_API_URL}/orders/user/${userId}/ordershistory?limit=1000&offset=${offset}`;
+    const orderedUrl = `${process.env.REACT_APP_API_URL}/orders/user/${userId}?limit=1000&offset=${offset}`;
     const url = showDelivered ? deliveredUrl : orderedUrl;
 
     const fetchUserOrderList = () => {

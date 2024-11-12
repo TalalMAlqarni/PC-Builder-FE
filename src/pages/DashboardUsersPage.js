@@ -8,7 +8,7 @@ export default function DashboardUsersPage() {
     const [userDetails, setUserDetails] = useState(null);
 
     const fetchAllUserList = () => {
-        const url = `http://localhost:5125/api/v1/users?limit=1000&offset=0`;
+        const url = `${process.env.REACT_APP_API_URL}/users?limit=1000&offset=0`;
         axios.get(url, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,

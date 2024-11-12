@@ -17,7 +17,7 @@ export default function DashboardOrdersDetails({ orderId, setNullToReturn }) {
     const [cartDetails, setCartDetails] = useState(null);
     const [paymentDetails, setPaymentDetails] = useState(null);
 
-    const orderUrl = `http://localhost:5125/api/v1/orders/${orderId}`;
+    const orderUrl = `${process.env.REACT_APP_API_URL}/orders/${orderId}`;
 
     useEffect(() => {
         const fetchOrderDetails = async () => {
@@ -31,7 +31,7 @@ export default function DashboardOrdersDetails({ orderId, setNullToReturn }) {
                 setOrderDetails(orderRes.data);
 
                 // get cart by id
-                const cartUrl = `http://localhost:5125/api/v1/carts/${orderRes.data.cartId}`;
+                const cartUrl = `${process.env.REACT_APP_API_URL}/carts/${orderRes.data.cartId}`;
                 const cartRes = await axios.get(cartUrl, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -40,7 +40,7 @@ export default function DashboardOrdersDetails({ orderId, setNullToReturn }) {
                 setCartDetails(cartRes.data);
 
                 // get payment by id
-                const paymentUrl = `http://localhost:5125/api/v1/payments/${orderRes.data.paymentId}`;
+                const paymentUrl = `${process.env.REACT_APP_API_URL}/payments/${orderRes.data.paymentId}`;
                 const paymentRes = await axios.get(paymentUrl, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,

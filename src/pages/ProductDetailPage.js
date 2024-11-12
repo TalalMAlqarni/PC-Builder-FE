@@ -14,7 +14,7 @@ function ProductDetail() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = `http://localhost:5125/api/v1/subcategories/products/${id}`;
+        const url = `${process.env.REACT_APP_API_URL}/subcategories/products/${id}`;
         axios
             .get(url)
             .then((res) => {

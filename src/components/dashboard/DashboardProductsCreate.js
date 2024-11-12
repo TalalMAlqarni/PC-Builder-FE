@@ -19,7 +19,7 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
     const [subCategories, setSubCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5125/api/v1/categories')
+        axios.get(`${process.env.REACT_APP_API_URL}/categories`)
             .then(res => {
                 setCategories(res.data);
                 console.log(categories);
@@ -33,7 +33,7 @@ export default function DashboardProductsCreate({ setIsAdding, getProducts }) {
     const handleAddProduct = (event) => {
         event.preventDefault();
         const token = localStorage.getItem('token');
-        axios.post('http://localhost:5125/api/v1/products', productDetails, {
+        axios.post(`${process.env.REACT_APP_API_URL}/products`, productDetails, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

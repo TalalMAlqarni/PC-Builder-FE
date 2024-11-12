@@ -62,7 +62,7 @@ export default function DashboardOrders({ orderList, setOrderDetails, fetchAllOr
 
     const changeStatus = (id, shipDate) => {
         axios
-            .put(`http://localhost:5125/api/v1/Orders/${id}`, {
+            .put(`${process.env.REACT_APP_API_URL}/Orders/${id}`, {
                 orderStatus: 'Delivered',
                 shipDate,
             }, {

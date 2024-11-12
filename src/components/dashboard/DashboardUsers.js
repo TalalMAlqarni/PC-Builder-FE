@@ -53,7 +53,7 @@ export default function DashboardUsers({ userList, setUserDetails, fetchAllUserL
 
     function deleteUser(userId) {
         axios
-            .delete(`http://localhost:5125/api/v1/users/${userId}`, {
+            .delete(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

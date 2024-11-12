@@ -10,7 +10,7 @@ export default function DashboardProductsDetails({ productId, setProductIdForMor
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = `http://localhost:5125/api/v1/subcategories/products/${productId}`;
+        const url = `${process.env.REACT_APP_API_URL}/subcategories/products/${productId}`;
         axios
             .get(url)
             .then((res) => {

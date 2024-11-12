@@ -134,7 +134,7 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
 
     function DeleteProduct(productId) {
         const token = localStorage.getItem('token');
-        axios.delete(`http://localhost:5125/api/v1/products/${productId}`, {
+        axios.delete(`${process.env.REACT_APP_API_URL}/products/${productId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -15,8 +15,7 @@ export default function Payment({ createdCart, setIsPaymentDone, setCreatedPayme
             paymentStatus: true,
             cartId: createdCart.id
         };
-
-        axios.post('http://localhost:5125/api/v1/payments', paymentData, {
+        axios.post(`${process.env.REACT_APP_API_URL}/api/v1/payments`, paymentData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

@@ -169,7 +169,7 @@ export default function Cart({ cartList, setCartList, userId, setCreatedCart, se
             quantity: item.quantity,
         }));
 
-        axios.post(`http://localhost:5125/api/v1/carts/`, { userId, cartDetails })
+        axios.post(`${process.env.REACT_APP_API_URL}/carts/`, { userId, cartDetails })
             .then((res) => {
                 setCreatedCart(res.data);
                 setIsCartCreated(true);

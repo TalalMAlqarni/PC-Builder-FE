@@ -16,7 +16,7 @@ export default function DashboardProductsUpdate({ productId, setProductIdForMore
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:5125/api/v1/products/${productId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/products/${productId}`)
             .then(res => {
                 setProductDetails(res.data);
             })
@@ -28,7 +28,7 @@ export default function DashboardProductsUpdate({ productId, setProductIdForMore
     const handleUpdateProduct = (event) => {
         event.preventDefault();
         const token = localStorage.getItem('token');
-        axios.put(`http://localhost:5125/api/v1/products/${productId}`, productDetails, {
+        axios.put(`${process.env.REACT_APP_API_URL}/products/${productId}`, productDetails, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

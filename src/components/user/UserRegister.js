@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function UserRegister(prop) {
 
     const { userInfo } = prop;
-    const createUserUrl = 'http://localhost:5125/api/v1/users';
+    const createUserUrl = `${process.env.REACT_APP_API_URL}/users`;
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
     const [isUserRegistered, setIsUserRegistered] = useState(false);

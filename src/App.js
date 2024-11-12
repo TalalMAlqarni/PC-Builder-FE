@@ -18,10 +18,10 @@ import OrderHistoryPage from "./pages/OrderHistoryPage";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const url = "http://localhost:5125";
+  const url = process.env.REACT_APP_API_URL;
 
   // get all products
-  const urlForProductList = "http://localhost:5125/api/v1/subcategories/products?limit=1000&offset=0";
+  const urlForProductList = `${url}/subcategories/products?limit=1000&offset=0`;
   const [allProductList, setAllProductList] = useState([]);
   function getProducts() {
     axios
@@ -38,7 +38,7 @@ function App() {
   }, []);
 
   // get user data
-  const urlForUserData = "http://localhost:5125/api/v1/users/auth";
+  const urlForUserData = `${url}/users/auth`;
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [userData, setUserData] = useState({});
   const [token, setToken] = useState(localStorage.getItem("token") || "");

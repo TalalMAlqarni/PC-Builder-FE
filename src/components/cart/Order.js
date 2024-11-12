@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Alert from '@mui/material/Alert';
 
 export default function Order({ createdPayment, createdCart, userData, setIsOrderCreated }) {
-    const createOrderUrl = 'http://localhost:5125/api/v1/orders/checkout';
+    const createOrderUrl = `${process.env.REACT_APP_API_URL}/orders/checkout`;
     const [showAlert, setShowAlert] = useState(false);
     const [alertMsg, setAlertMsg] = useState('');
     const [alertSeverity, setAlertSeverity] = useState('success');

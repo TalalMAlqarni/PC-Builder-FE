@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 export default function UserLogin(prop) {
 
     const { userInfo, setToken } = prop;
-    const loginUrl = 'http://localhost:5125/api/v1/users/signIn';
+    const loginUrl = `${process.env.REACT_APP_API_URL}/users/signIn`;
     const [error, setError] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);

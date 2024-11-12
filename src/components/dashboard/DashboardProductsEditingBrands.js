@@ -13,7 +13,7 @@ export default function DashboardProductsEditingBrands({ setIsEditingBrands }) {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5125/api/v1/categories')
+        axios.get(`${process.env.REACT_APP_API_URL}/categories`)
             .then(res => {
                 setCategories(res.data);
             })
@@ -37,7 +37,7 @@ export default function DashboardProductsEditingBrands({ setIsEditingBrands }) {
             setError(true);
             return;
         }
-        axios.post(`http://localhost:5125/api/v1/subcategories`, { name: newBrandName, categoryId: selectedCategory }, {
+        axios.post(`${process.env.REACT_APP_API_URL}/subcategories`, { name: newBrandName, categoryId: selectedCategory }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -62,7 +62,7 @@ export default function DashboardProductsEditingBrands({ setIsEditingBrands }) {
 
         }
         const token = localStorage.getItem('token');
-        axios.post('http://localhost:5125/api/v1/categories', { categoryName: newProductTypeName }, {
+        axios.post(`${process.env.REACT_APP_API_URL}/categories`, { categoryName: newProductTypeName }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

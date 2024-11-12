@@ -8,7 +8,7 @@ export default function DashboardUserDetails({ userId, setNullToReturn }) {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const res = await axios.get(`http://localhost:5125/api/v1/users/${userId}`, {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     }

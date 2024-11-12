@@ -52,7 +52,7 @@ export default function UpdateUser(prop) {
     const [error, setError] = React.useState('');
     const navigate = useNavigate();
     function handleUpdate() {
-        const urlForUpdateUser = `http://localhost:5125/api/v1/users/${userData.userId}`;
+        const urlForUpdateUser = `${process.env.REACT_APP_API_URL}/users/${userData.userId}`;
         const token = localStorage.getItem('token');
         const updatedUserInfo = { ...userInfo };
 

@@ -8,7 +8,7 @@ export default function DashboardOrdersPage() {
     const [orderDetails, setOrderDetails] = useState(null);
 
     const fetchAllOrderList = () => {
-        const url = `http://localhost:5125/api/v1/orders?limit=1000&offset=0`;
+        const url = `${process.env.REACT_APP_API_URL}/orders?limit=1000&offset=0`;
         axios.get(url, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
