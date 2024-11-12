@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
-import "./Products.css";
-import Typography from "@mui/material/Typography";
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import { Grid, Typography, Pagination, Stack } from "@mui/material";
 import axios from "axios";
 
-function Products(prop) {
-  const { allProductList, userInput, value, cartList, setCartList } = prop;
-  const totalProducts = allProductList.length;
+function Products({ allProductList, userInput, value, cartList, setCartList }) {
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(6);
@@ -16,22 +11,21 @@ function Products(prop) {
 
   useEffect(() => {
     const urlParams = new URLSearchParams({ limit, offset, MinPrice: value[0], MaxPrice: value[1] });
-
     if (userInput) {
       urlParams.set("search", userInput);
     }
 
     const urlForProductList = `http://localhost:5125/api/v1/subcategories/products?${urlParams.toString()}`;
 
-    axios
-      .get(urlForProductList)
-      .then((res) => {
-        setProductList(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    axios.get(urlForProductList)
+      .then(res => setProductList(res.data))
+      .catch(err => console.log(err));
   }, [limit, offset, userInput, value]);
+
+  useEffect(() => {
+    setPage(1);
+    setOffset(0);
+  }, [userInput, value]);
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -40,24 +34,24 @@ function Products(prop) {
 
   return (
     <>
-      <div className="products-list">
+      <Grid container spacing={4}>
         {productList.map((product) => (
-          <Product key={product.productId} product={product} cartList={cartList} setCartList={setCartList} />
+          <Grid item xs={12} sm={6} md={4} key={product.productId}>
+            <Product product={product} cartList={cartList} setCartList={setCartList} />
+          </Grid>
         ))}
-      </div>
-      <Stack spacing={2}>
+      </Grid>
+
+      <Stack spacing={2} sx={{ mt: 4, alignItems: 'center' }}>
         <Typography>Page: {page}</Typography>
         <Pagination
-          count={Math.ceil(totalProducts / limit)}
+          count={Math.ceil(allProductList.length / limit)}
           page={page}
           onChange={handleChange}
         />
       </Stack>
     </>
   );
-
 }
 
 export default Products;
-
-

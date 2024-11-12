@@ -15,6 +15,7 @@ import DashboardProductsPage from "./pages/DashboardProductsPage";
 import DashboardOrdersPage from "./pages/DashboardOrdersPage";
 import DashboardUsersPage from "./pages/DashboardUsersPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const url = "http://localhost:5125";
@@ -99,7 +100,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <p>Home Page </p>,
+          element: <HomePage />,
         },
         {
           path: "/products",

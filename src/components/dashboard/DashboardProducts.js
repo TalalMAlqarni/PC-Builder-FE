@@ -9,8 +9,9 @@ import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import ArrowForward from "@mui/icons-material/ArrowForward";
 
-export default function DashboardProducts({ allProductList, setIsAdding, getProducts, setProductIdForMoreDetails, setProductIdForUpdate }) {
+export default function DashboardProducts({ allProductList, setIsAdding, getProducts, setProductIdForMoreDetails, setProductIdForUpdate, setIsEditingBrands }) {
 
     const columns = [
         {
@@ -29,6 +30,11 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
             width: 200,
             label: 'Name',
             dataKey: 'productName',
+        },
+        {
+            width: 200,
+            label: 'ID',
+            dataKey: 'productId',
         },
         {
             width: 10,
@@ -142,9 +148,10 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
             });
     }
 
+
     return (
         <>
-            <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} style={{ fontSize: '2em', fontWeight: 'bold', width: '320px' }} onClick={() => setIsAdding(true)}>Add Product</Button>
+            <Button variant="contained" sx={{ backgroundColor: '#1A204f', color: 'white' }} style={{ fontSize: '1.8em', fontWeight: 'bold', width: '400px' }} onClick={() => setIsAdding(true)}>Add New Products</Button>
             <br /><br />
             <Paper style={{ height: 400, width: '100%' }}>
                 <TableVirtuoso
@@ -154,6 +161,10 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
                     itemContent={rowContent}
                 />
             </Paper>
+            <br /><br />
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button variant="contained" color='warning' style={{ fontSize: '1em', fontWeight: 'bold', width: '200px' }} startIcon={<ArrowForward />} onClick={() => setIsEditingBrands(true)}>Edit brands</Button>
+            </div>
         </>
     );
 }
