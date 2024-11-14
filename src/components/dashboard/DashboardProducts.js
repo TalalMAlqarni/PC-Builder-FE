@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import ArrowForward from "@mui/icons-material/ArrowForward";
 
-export default function DashboardProducts({ allProductList, setIsAdding, getProducts, setProductIdForMoreDetails, setProductIdForUpdate, setIsEditingBrands }) {
+export default function DashboardProducts({ allProductList, setIsAdding, getProducts, setProductIdForMoreDetails, setProductIdForUpdate, setIsEditingBrands, setAddSpecifications }) {
 
     const columns = [
         {
@@ -27,17 +27,17 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
             ),
         },
         {
-            width: 200,
+            width: 150,
             label: 'Name',
             dataKey: 'productName',
         },
         {
-            width: 200,
+            width: 100,
             label: 'ID',
             dataKey: 'productId',
         },
         {
-            width: 10,
+            width: 1,
             label: 'Price($)',
             dataKey: 'productPrice',
             numeric: true,
@@ -54,7 +54,7 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
             dataKey: 'subCategoryName',
         },
         {
-            width: 200,
+            width: 250,
             label: 'Actions',
             dataKey: 'actions',
             renderCell: (row) => (
@@ -74,6 +74,14 @@ export default function DashboardProducts({ allProductList, setIsAdding, getProd
                         style={{ marginRight: '5px' }}
                     >
                         Edit
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="info"
+                        onClick={() => setAddSpecifications(row.productId)}
+                        style={{ marginRight: '5px' }}
+                    >
+                        Add Specifications
                     </Button>
                     <Button
                         variant="contained"

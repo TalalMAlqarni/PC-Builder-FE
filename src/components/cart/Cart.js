@@ -8,9 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso } from 'react-virtuoso';
 import Button from '@mui/material/Button';
+import CompatibilityCheck from '../compatibility/CompatibilityCheck';
 import axios from 'axios';
 
-export default function Cart({ cartList, setCartList, userId, setCreatedCart, setIsCartCreated }) {
+export default function Cart({ cartList, setCartList, userId, setCreatedCart, setIsCartCreated, ignoreWarning, setIgnoreWarning }) {
     const columns = [
         {
             width: 60,
@@ -192,6 +193,7 @@ export default function Cart({ cartList, setCartList, userId, setCreatedCart, se
             </Paper>
             <div style={{ fontWeight: 'bold', marginTop: '20px', padding: '10px', backgroundColor: '#f9f9f9' }}>
                 <h3>Total: ${totalPrice}</h3>
+                {!ignoreWarning && <CompatibilityCheck cartList={cartList} setIgnoreWarning={setIgnoreWarning} />}
                 <Button
                     variant="contained"
                     color="primary"

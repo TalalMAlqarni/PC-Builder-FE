@@ -90,9 +90,11 @@ export default function OrderHistory({ orderList, setOrderDetails }) {
                     >
                         {column.dataKey === 'orderDate' || column.dataKey === 'shipDate'
                             ? formatDate(row[column.dataKey])
-                            : column.renderCell
-                                ? column.renderCell(row)
-                                : row[column.dataKey]}
+                            : column.dataKey === 'orderStatus'
+                                ? <b>{row[column.dataKey]}</b>
+                                : column.renderCell
+                                    ? column.renderCell(row)
+                                    : row[column.dataKey]}
                     </TableCell>
                 ))}
             </React.Fragment>

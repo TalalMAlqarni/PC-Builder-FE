@@ -6,8 +6,9 @@ import Button from "@mui/material/Button";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Rating from "@mui/material/Rating";
 import { Box, Typography, Paper, Grid, Container } from "@mui/material";
+import Reviews from "../components/products/Reviews";
 
-function ProductDetail() {
+function ProductDetailPage({ userData }) {
     const { id } = useParams();
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
@@ -74,6 +75,7 @@ function ProductDetail() {
                                     Go Back
                                 </Button>
                             </Box>
+                            <Reviews productId={id} userData={userData} />
                         </Grid>
                     </Grid>
                 </Paper>
@@ -82,4 +84,4 @@ function ProductDetail() {
     );
 }
 
-export default ProductDetail;
+export default ProductDetailPage;

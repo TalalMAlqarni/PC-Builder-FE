@@ -2,15 +2,19 @@ import React from 'react'
 import Cart from '../components/cart/Cart'
 import Payment from '../components/cart/Payment'
 import Order from '../components/cart/Order'
+import Opinion from '../components/compatibility/Opinion'
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 export default function CartPage({ cartList, setCartList, userData, createdCart, setCreatedCart }) {
+    console.log(cartList);
     const navigate = useNavigate();
     const [isCartCreated, setIsCartCreated] = useState(false);
     const [isPaymentDone, setIsPaymentDone] = useState(false);
     const [isOrderCreated, setIsOrderCreated] = useState(false);
+
+    const [ignoreWarning, setIgnoreWarning] = useState(false);
 
     const [createdPayment, setCreatedPayment] = useState({});
 
@@ -33,7 +37,8 @@ export default function CartPage({ cartList, setCartList, userData, createdCart,
     else {
         return (
             <>
-                {(!isCartCreated && !isPaymentDone && !isOrderCreated) && <Cart cartList={cartList} setCartList={setCartList} userId={userData.userId} setCreatedCart={setCreatedCart} setIsCartCreated={setIsCartCreated} />}
+                {!isCartCreated && <Opinion cartlist={cartList} />}
+                {!isCartCreated && <Cart cartList={cartList} setCartList={setCartList} userId={userData.userId} setCreatedCart={setCreatedCart} setIsCartCreated={setIsCartCreated} ignoreWarning={ignoreWarning} setIgnoreWarning={setIgnoreWarning} />}
                 {isCartCreated && !isPaymentDone && <Payment createdCart={createdCart} setIsPaymentDone={setIsPaymentDone} setCreatedPayment={setCreatedPayment} />}
                 {isPaymentDone && !isOrderCreated && <Order createdPayment={createdPayment} createdCart={createdCart} userData={userData} setIsOrderCreated={setIsOrderCreated} />}
             </>

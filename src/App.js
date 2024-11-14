@@ -16,6 +16,7 @@ import DashboardOrdersPage from "./pages/DashboardOrdersPage";
 import DashboardUsersPage from "./pages/DashboardUsersPage";
 import OrderHistoryPage from "./pages/OrderHistoryPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const url = process.env.REACT_APP_API_URL;
@@ -44,6 +45,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isUserUpdated, setIsUserUpdated] = useState(true);
+
   function getUserData() {
     setIsUserLoading(true);
     if (token) {
@@ -108,7 +110,7 @@ function App() {
         },
         {
           path: "/products/:id",
-          element: <ProductDetailPage />,
+          element: <ProductDetailPage userData={userData} />,
         },
         {
           path: "/user/register",
@@ -147,9 +149,8 @@ function App() {
           element: <ProtectedRoute isUserLoading={isUserLoading} isAuthenticated={isAuthenticated} isUserAdmin={isUserAdmin} shouldCheckAdmin={true} element={<DashboardUsersPage />} />,
         },
         {
-          // TODO:make a page for 404
           path: "*",
-          element: <p>Not Found</p>,
+          element: <NotFoundPage />,
         },
       ]
     }

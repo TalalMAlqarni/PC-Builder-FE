@@ -79,7 +79,7 @@ export default function UpdateUser(prop) {
         <>
 
             <div>
-                <h1>User Registration</h1>
+                <h1>Update User</h1>
                 <h3>Please update your information, then click Save Changes </h3>
             </div>
 
